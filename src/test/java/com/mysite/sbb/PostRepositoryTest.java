@@ -48,4 +48,13 @@ class PostRepositoryTest {
         Question question = questionRepository.findBySubjectAndContent("sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.").get();
         assertThat(question.getId()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("findBySubjectLike")
+    void t5() {
+        List<Question> questions = questionRepository.findBySubjectLike("sbb%");
+
+        Question question = questions.get(0);
+        assertThat(question.getSubject()).isEqualTo("sbb가 무엇인가요?");
+    }
 }
